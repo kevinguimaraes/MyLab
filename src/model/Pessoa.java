@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -25,6 +27,7 @@ public class Pessoa implements Serializable {
     @Column(nullable = false, length = 100)
     private String nome;
     
+    @Temporal(TemporalType.DATE)
     private Date dt_nascimento;
 
     private String telefone;

@@ -27,7 +27,7 @@ public class PessoaDAOImpl extends BaseDaoImpl<Pessoa, Long> implements PessoaDA
 
 	@Override
 	public List<Pessoa> listarTodos(Session session) throws HibernateException {
-		Query consulta = session.createQuery("from Produto");
+		Query consulta = session.createQuery("from Pessoa");
         return consulta.list();
 	}
     

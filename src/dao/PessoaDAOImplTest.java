@@ -39,7 +39,7 @@ public class PessoaDAOImplTest {
     @Test
     public void testAlterar() {
         System.out.println("alterar");
-        primeiroProdutoBanco();
+        primeiroPessoaBanco();
         pessoa.setNome("nome alterado");
         session = HibernateUtil.abrirSessao();
         pessoaDAO.salvarOuAlterar(pessoa, session);
@@ -51,7 +51,7 @@ public class PessoaDAOImplTest {
     @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
-        primeiroProdutoBanco();
+        primeiroPessoaBanco();
         session = HibernateUtil.abrirSessao();
         Pessoa prodPesquisado = pessoaDAO.pesquisarPorId(pessoa.getId(), session);
         session.close();
@@ -61,18 +61,18 @@ public class PessoaDAOImplTest {
     @Test
     public void testExcluir() {
         System.out.println("excluir");
-        primeiroProdutoBanco();
+        primeiroPessoaBanco();
         session = HibernateUtil.abrirSessao();
         pessoaDAO.excluir(pessoa, session);
-        Pessoa produtoExcluido = pessoaDAO.pesquisarPorId(pessoa.getId(), session);
+        Pessoa pessoaExcluido = pessoaDAO.pesquisarPorId(pessoa.getId(), session);
         session.close();
-        Assert.assertNull(produtoExcluido);
+        Assert.assertNull(pessoaExcluido);
     }
     
     @Test
     public void testPesquisarTodos() {
         System.out.println("pesquisarTodos");
-        primeiroProdutoBanco();
+        primeiroPessoaBanco();
         session = HibernateUtil.abrirSessao();
         List<Pessoa> pessoas = pessoaDAO.listarTodos(session);
         session.close();
@@ -81,9 +81,9 @@ public class PessoaDAOImplTest {
     
     
 
-    public Pessoa primeiroProdutoBanco() {
+    public Pessoa primeiroPessoaBanco() {
         session = HibernateUtil.abrirSessao();
-        Query consulta = session.createQuery("from Produto");
+        Query consulta = session.createQuery("from Pessoa");
         consulta.setMaxResults(1);
         pessoa = (Pessoa) consulta.uniqueResult();
         session.close();

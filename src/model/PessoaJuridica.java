@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -18,11 +19,16 @@ public class PessoaJuridica extends Pessoa implements Serializable{
 	private String fantasia;
 
 	public PessoaJuridica() {
-		super();
 	}
 
-	public PessoaJuridica(Long id, String cnpj, String fantasia) {
-		super();
+	public PessoaJuridica(String cnpj, String fantasia) {
+		this.cnpj = cnpj;
+		this.fantasia = fantasia;
+	}
+	
+
+	public PessoaJuridica(Long id, String nome, Date dt_nascimento, String telefone, String email, String cnpj, String fantasia) {
+		super(id, nome, dt_nascimento, telefone, email);
 		this.cnpj = cnpj;
 		this.fantasia = fantasia;
 	}
@@ -46,33 +52,4 @@ public class PessoaJuridica extends Pessoa implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	@Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (this.getId() != null ? this.getId().hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pessoa)) {
-            return false;
-        }
-        PessoaFisica other = (PessoaFisica) object;
-        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.getId().equals(other.getId()))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.hibernate.entidade.Pessoa[ id=" + this.getId() + " ]";
-    }
-	
-	
-	
-
 }
