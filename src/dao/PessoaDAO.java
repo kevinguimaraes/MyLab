@@ -9,13 +9,13 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import model.Produto;
+import model.Pessoa;
 
 /**
  *
  * @author Aluno
  */
-public interface ProdutoDAO extends BaseDao<Produto, Long>{
+public interface PessoaDAO extends BaseDao<Pessoa, Long>{
     
     
 }

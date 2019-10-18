@@ -3,8 +3,9 @@ package dao;
 
 import org.junit.Test;
 
-import model.Produto;
+import model.Pessoa;
 
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,37 +15,37 @@ import org.junit.Assert;
  *
  * @author Aluno
  */
-public class ProdutoDAOImplTest {
+public class PessoaDAOImplTest {
 
-    private Produto produto;
+    private Pessoa pessoa;
     private Session session;
-    private ProdutoDAO produtoDAO;
+    private PessoaDAO pessoaDAO;
 
-    public ProdutoDAOImplTest() {
-        produtoDAO = new ProdutoDAOImpl();
+    public PessoaDAOImplTest() {
+        pessoaDAO = new PessoaDAOImpl();
     }
 
     @Test
     public void testSalvar() {
         System.out.println("salvar");
         
-        produto = new Produto(null, "Produto Teste", "Descricao Teste", 10, 20, 30);
+        pessoa = new Pessoa(null, "Kevin", new Date(), "48984210016", "kevinsiob@hotmail.com");
         session = HibernateUtil.abrirSessao();
-        produtoDAO.salvarOuAlterar(produto, session);
+        pessoaDAO.salvarOuAlterar(pessoa, session);
         session.close();
-        Assert.assertNotNull(produto.getId());
+        Assert.assertNotNull(pessoa.getId());
     }
 
     @Test
     public void testAlterar() {
         System.out.println("alterar");
         primeiroProdutoBanco();
-        produto.setNome("nome alterado");
+        pessoa.setNome("nome alterado");
         session = HibernateUtil.abrirSessao();
-        produtoDAO.salvarOuAlterar(produto, session);
-        Produto prodAlterado = produtoDAO.pesquisarPorId(produto.getId(), session);
+        pessoaDAO.salvarOuAlterar(pessoa, session);
+        Pessoa prodAlterado = pessoaDAO.pesquisarPorId(pessoa.getId(), session);
         session.close();
-        Assert.assertEquals(prodAlterado.getNome(), produto.getNome());
+        Assert.assertEquals(prodAlterado.getNome(), pessoa.getNome());
     }
 
     @Test
@@ -52,7 +53,7 @@ public class ProdutoDAOImplTest {
         System.out.println("pesquisarPorId");
         primeiroProdutoBanco();
         session = HibernateUtil.abrirSessao();
-        Produto prodPesquisado = produtoDAO.pesquisarPorId(produto.getId(), session);
+        Pessoa prodPesquisado = pessoaDAO.pesquisarPorId(pessoa.getId(), session);
         session.close();
         Assert.assertNotNull(prodPesquisado);
     }
@@ -62,8 +63,8 @@ public class ProdutoDAOImplTest {
         System.out.println("excluir");
         primeiroProdutoBanco();
         session = HibernateUtil.abrirSessao();
-        produtoDAO.excluir(produto, session);
-        Produto produtoExcluido = produtoDAO.pesquisarPorId(produto.getId(), session);
+        pessoaDAO.excluir(pessoa, session);
+        Pessoa produtoExcluido = pessoaDAO.pesquisarPorId(pessoa.getId(), session);
         session.close();
         Assert.assertNull(produtoExcluido);
     }
@@ -73,23 +74,23 @@ public class ProdutoDAOImplTest {
         System.out.println("pesquisarTodos");
         primeiroProdutoBanco();
         session = HibernateUtil.abrirSessao();
-        List<Produto> produtos = produtoDAO.listarTodos(session);
+        List<Pessoa> pessoas = pessoaDAO.listarTodos(session);
         session.close();
-        Assert.assertFalse(produtos.isEmpty());
+        Assert.assertFalse(pessoas.isEmpty());
     }
     
     
 
-    public Produto primeiroProdutoBanco() {
+    public Pessoa primeiroProdutoBanco() {
         session = HibernateUtil.abrirSessao();
         Query consulta = session.createQuery("from Produto");
         consulta.setMaxResults(1);
-        produto = (Produto) consulta.uniqueResult();
+        pessoa = (Pessoa) consulta.uniqueResult();
         session.close();
-        if (produto == null) {
+        if (pessoa == null) {
             testSalvar();
         }
-        return produto;
+        return pessoa;
     }
 
 }

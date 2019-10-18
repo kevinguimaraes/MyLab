@@ -11,22 +11,22 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import model.Produto;
+import model.Pessoa;
 
 /**
  *
  * @author Aluno
  */
-public class ProdutoDAOImpl extends BaseDaoImpl<Produto, Long> implements ProdutoDAO, Serializable{
+public class PessoaDAOImpl extends BaseDaoImpl<Pessoa, Long> implements PessoaDAO, Serializable{
 
     @Override
-    public Produto pesquisarPorId(Long id, Session session) throws HibernateException {
-        Produto produto = (Produto) session.get(Produto.class, id);
-        return produto;
+    public Pessoa pesquisarPorId(Long id, Session session) throws HibernateException {
+        Pessoa pessoa = (Pessoa) session.get(Pessoa.class, id);
+        return pessoa;
     }
 
 	@Override
-	public List<Produto> listarTodos(Session session) throws HibernateException {
+	public List<Pessoa> listarTodos(Session session) throws HibernateException {
 		Query consulta = session.createQuery("from Produto");
         return consulta.list();
 	}
