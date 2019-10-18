@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
+import model.Endereco;
 import model.PessoaJuridica;
 
 public class PessoaJuridicaDAOImplTest {
@@ -27,10 +28,13 @@ public class PessoaJuridicaDAOImplTest {
     public void testSalvar() {
         System.out.println("salvar");
         pessoaJuridica = new PessoaJuridica(null, "Jorge", new Date(), "12345678", "kevin@senac.br", "088123213", "M");
+        Endereco endereco = new Endereco(null, "Rua da Palmeira, 20", "Centro", "Floripa", "SC");
+        pessoaJuridica.setEndereco(endereco);
         session = HibernateUtil.abrirSessao();
         pessoaJuridicaDAO.salvarOuAlterar(pessoaJuridica, session);
         session.close();
         assertNotNull(pessoaJuridica.getId());
+        assertNotNull(endereco.getId());
     }
     
     @Test

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import model.Endereco;
 import model.Pessoa;
 import model.PessoaJuridica;
 import model.PessoaFisica;
@@ -23,6 +24,7 @@ public class HibernateUtil {
     static {
         try {
             Configuration cfg = new Configuration();
+            cfg.addAnnotatedClass(Endereco.class);
             cfg.addAnnotatedClass(Pessoa.class);
             cfg.addAnnotatedClass(PessoaFisica.class);
             cfg.addAnnotatedClass(PessoaJuridica.class);

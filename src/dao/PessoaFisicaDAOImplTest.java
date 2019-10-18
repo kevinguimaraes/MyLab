@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
+import model.Endereco;
 import model.PessoaFisica;
 
 import static org.junit.Assert.*;
@@ -26,10 +27,13 @@ public class PessoaFisicaDAOImplTest {
     public void testSalvar() {
         System.out.println("salvar");
         pessoaFisica = new PessoaFisica(null, "Jorge", new Date(), "12345678", "kevin@senac.br", "088123213", "M");
+        Endereco endereco = new Endereco(null, "Rua da Palmeira, 20", "Centro", "Floripa", "SC");
+        pessoaFisica.setEndereco(endereco);
         session = HibernateUtil.abrirSessao();
         pessoaFisicaDAO.salvarOuAlterar(pessoaFisica, session);
         session.close();
         assertNotNull(pessoaFisica.getId());
+        assertNotNull(endereco.getId());
     }
     
     @Test
