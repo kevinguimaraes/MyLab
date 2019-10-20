@@ -1,25 +1,26 @@
 
-package dao;
+package dao.tests;
 
 import java.util.Date;
-import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
+import dao.PessoaFisicaDAO;
+import dao.helper.HibernateUtil;
 import model.Endereco;
 import model.PessoaFisica;
 
 import static org.junit.Assert.*;
 
-public class PessoaFisicaDAOImplTest {
+public class PessoaFisicaDaoTest {
     
     private PessoaFisica pessoaFisica;
     private Session session;
     private PessoaFisicaDAO pessoaFisicaDAO;  
     
-    public PessoaFisicaDAOImplTest() {
-    pessoaFisicaDAO = new PessoaFisicaDAOImpl();
+    public PessoaFisicaDaoTest() {
+    pessoaFisicaDAO = new PessoaFisicaDAO();
     }
     
  

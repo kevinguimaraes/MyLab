@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package dao.helper;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -29,7 +29,7 @@ public class HibernateUtil {
             cfg.addAnnotatedClass(PessoaFisica.class);
             cfg.addAnnotatedClass(PessoaJuridica.class);
             
-            cfg.configure("/dao/hibernate.cfg.xml");
+            cfg.configure("/dao/helper/hibernate.cfg.xml");
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().applySettings(cfg.getProperties());
             sessionFactory = cfg.buildSessionFactory(build.build());
         } catch (Throwable ex) {

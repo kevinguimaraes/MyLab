@@ -1,8 +1,10 @@
-package dao;
+package dao.tests;
 
 
 import org.junit.Test;
 
+import dao.PessoaDAO;
+import dao.helper.HibernateUtil;
 import model.Pessoa;
 
 import java.util.Date;
@@ -15,14 +17,14 @@ import org.junit.Assert;
  *
  * @author Aluno
  */
-public class PessoaDAOImplTest {
+public class PessoaDaoTest {
 
     private Pessoa pessoa;
     private Session session;
     private PessoaDAO pessoaDAO;
 
-    public PessoaDAOImplTest() {
-        pessoaDAO = new PessoaDAOImpl();
+    public PessoaDaoTest() {
+        pessoaDAO = new PessoaDAO();
     }
 
     @Test

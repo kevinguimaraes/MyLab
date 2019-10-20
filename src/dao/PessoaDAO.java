@@ -5,17 +5,28 @@
  */
 package dao;
 
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import model.Pessoa;
+import dao.helper.BaseDao;
 
-/**
- *
- * @author Aluno
- */
-public interface PessoaDAO extends BaseDao<Pessoa, Long>{
+public class PessoaDAO extends BaseDao<Pessoa, Long> implements Serializable{
+
+    @Override
+    public Pessoa pesquisarPorId(Long id, Session session) throws HibernateException {
+        Pessoa pessoa = (Pessoa) session.get(Pessoa.class, id);
+        return pessoa;
+    }
+
+	@Override
+	public List<Pessoa> listarTodos(Session session) throws HibernateException {
+		Query consulta = session.createQuery("from Pessoa");
+        return consulta.list();
+	}
     
     
 }

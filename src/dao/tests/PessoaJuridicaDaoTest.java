@@ -1,4 +1,4 @@
-package dao;
+package dao.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -10,17 +10,19 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.junit.Test;
 
+import dao.PessoaJuridicaDAO;
+import dao.helper.HibernateUtil;
 import model.Endereco;
 import model.PessoaJuridica;
 
-public class PessoaJuridicaDAOImplTest {
+public class PessoaJuridicaDaoTest {
     
     private PessoaJuridica pessoaJuridica;
     private Session session;
     private PessoaJuridicaDAO pessoaJuridicaDAO;  
     
-    public PessoaJuridicaDAOImplTest() {
-    pessoaJuridicaDAO = new PessoaJuridicaDAOImpl();
+    public PessoaJuridicaDaoTest() {
+    pessoaJuridicaDAO = new PessoaJuridicaDAO();
     }
     
  
