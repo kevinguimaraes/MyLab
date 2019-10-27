@@ -17,13 +17,13 @@ import org.junit.Assert;
  *
  * @author Aluno
  */
-public class PessoaDaoTest {
+public class PessoaDaoTEST {
 
     private Pessoa pessoa;
     private Session session;
     private PessoaDAO pessoaDAO;
 
-    public PessoaDaoTest() {
+    public PessoaDaoTEST() {
         pessoaDAO = new PessoaDAO();
     }
 

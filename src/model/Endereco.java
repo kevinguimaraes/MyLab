@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Endereco implements Serializable {
     
     @Column(nullable = false)
     private String estado;
-
+    
     public Endereco() {
     }
 
@@ -81,9 +82,7 @@ public class Endereco implements Serializable {
         this.estado = estado;
     }
     
-    
-
-    @Override
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

@@ -15,13 +15,13 @@ import dao.helper.HibernateUtil;
 import model.Endereco;
 import model.PessoaJuridica;
 
-public class PessoaJuridicaDaoTest {
+public class PessoaJuridicaDaoTEST {
     
     private PessoaJuridica pessoaJuridica;
     private Session session;
     private PessoaJuridicaDAO pessoaJuridicaDAO;  
     
-    public PessoaJuridicaDaoTest() {
+    public PessoaJuridicaDaoTEST() {
     pessoaJuridicaDAO = new PessoaJuridicaDAO();
     }
     

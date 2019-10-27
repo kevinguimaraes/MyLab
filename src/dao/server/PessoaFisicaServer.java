@@ -11,6 +11,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.Session;
@@ -46,10 +47,10 @@ public class PessoaFisicaServer {
 		 return pessoaFisica;
     }
 	 
+	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
-	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 public Long cadastrar(@FormParam("dado") String dadosJSON ) {
+	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     PessoaFisica pessoaFisica = gson.fromJson(dadosJSON, PessoaFisica.class);
 	     PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
@@ -59,11 +60,10 @@ public class PessoaFisicaServer {
 	     return pessoaFisica.getId();
 	 }
 	 
+	 //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 @PUT
 	 @Produces(MediaType.APPLICATION_JSON)
-	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 @Path("{id}")
-	 public Long alterar(@PathParam("id") Integer id, @FormParam("dado") String dadosJSON ) {
+	 public Long alterar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     PessoaFisica pessoaFisica = gson.fromJson(dadosJSON, PessoaFisica.class);
 	     
@@ -77,13 +77,14 @@ public class PessoaFisicaServer {
 	 
 	@DELETE
     @Produces(MediaType.APPLICATION_JSON)
-	@Path("{id}")
-    public Boolean deletar(@PathParam("id") Long id){
+    public Boolean deletar(@QueryParam("dado") String dadosJSON){
 	     PessoaFisicaDAO pessoaFisicaDAO = new PessoaFisicaDAO();
-	     PessoaFisica p = new PessoaFisica();
-	     p.setId(id);
+	     
+	     Gson gson = new Gson();
+	     PessoaFisica pessoaFisica = gson.fromJson(dadosJSON, PessoaFisica.class);
+	     
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaFisicaDAO.excluir(p, session);
+	     pessoaFisicaDAO.excluir(pessoaFisica, session);
 		 session.close();
 	     return true;
 	 }

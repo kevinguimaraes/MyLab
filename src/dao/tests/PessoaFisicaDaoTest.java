@@ -13,13 +13,13 @@ import model.PessoaFisica;
 
 import static org.junit.Assert.*;
 
-public class PessoaFisicaDaoTest {
+public class PessoaFisicaDaoTEST {
     
     private PessoaFisica pessoaFisica;
     private Session session;
     private PessoaFisicaDAO pessoaFisicaDAO;  
     
-    public PessoaFisicaDaoTest() {
+    public PessoaFisicaDaoTEST() {
     pessoaFisicaDAO = new PessoaFisicaDAO();
     }
     
