@@ -2,14 +2,17 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cidade")
+@Table(name = "estado")
 public class Estado implements Serializable{
 	private static final long serialVersionUID = 1L;
     @Id
@@ -17,11 +20,16 @@ public class Estado implements Serializable{
     private Long id;
     
     private String nome;
-
-	public Estado(Long id, String nome) {
+    
+    @ManyToOne
+    @JoinColumn(name = "idpais")
+    private Pais pais;
+    
+	public Estado(Long id, String nome, Pais pais) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.pais = pais;
 	}
 
 	public Estado() {
@@ -42,6 +50,14 @@ public class Estado implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 
 	@Override

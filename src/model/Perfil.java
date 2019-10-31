@@ -3,51 +3,40 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "perfilacesso")
-public class PerfilAcesso implements Serializable{
+@Table(name = "perfil")
+public class Perfil implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false, length = 100)
     private String nome;
     
-    @ManyToOne
-    @JoinColumn(name = "idtela")
-    private Tela tela;
-    
-    @ManyToOne
-    @JoinColumn(name = "idperfil")
-    private Perfil perfil;
-
-	public PerfilAcesso(Long id, String nome, Tela tela, Perfil perfil) {
+	public Perfil(Long id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.tela = tela;
-		this.perfil = perfil;
 	}
 
-	public PerfilAcesso() {
+	public Perfil() {
 		super();
 	}
 
-	public Long getId() {
+	public Long getIdperfil() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setIdperfil(Long id) {
 		this.id = id;
 	}
 
@@ -58,23 +47,7 @@ public class PerfilAcesso implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public Tela getTela() {
-		return tela;
-	}
-
-	public void setTela(Tela tela) {
-		this.tela = tela;
-	}
-
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-
+    
 	@Override
     public int hashCode() {
         int hash = 0;
@@ -84,10 +57,10 @@ public class PerfilAcesso implements Serializable{
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof PerfilAcesso)) {
+        if (!(object instanceof Perfil)) {
             return false;
         }
-        PerfilAcesso other = (PerfilAcesso) object;
+        Perfil other = (Perfil) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -98,4 +71,5 @@ public class PerfilAcesso implements Serializable{
     public String toString() {
         return "br.com.hibernate.entidade.Produto[ id=" + id + " ]";
     }
+
 }

@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,12 +19,29 @@ public class Usuario implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String nome;
+    private String login;
+    
+    private String password;
+    
+    private String cargo;
+    
+    @OneToOne
+    @JoinColumn(name = "idpessoa")
+    private Pessoa pessoa;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "idperfil")
+    private Perfil perfil;
+    
 
-	public Usuario(Long id, String nome) {
+	public Usuario(Long id, String login, String password, String cargo, Pessoa pessoa) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.login = login;
+		this.password = password;
+		this.cargo = cargo;
+		this.pessoa = pessoa;
 	}
 
 	public Usuario() {
@@ -36,12 +56,36 @@ public class Usuario implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	@Override

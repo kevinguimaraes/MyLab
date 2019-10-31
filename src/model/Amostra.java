@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +24,14 @@ public class Amostra implements Serializable{
     private Date dt_amostra;
     
     private String observacao;
+    
+    @ManyToOne
+    @JoinColumn(name = "idcliente")
+    private Cliente cliente;
+    
+    @ManyToOne
+    @JoinColumn(name = "idendereco")
+    private Endereco endereco;
 
 	public Amostra(Long id, String codigo, Date dt_amostra, String observacao) {
 		super();

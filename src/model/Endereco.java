@@ -2,11 +2,14 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,27 +25,29 @@ public class Endereco implements Serializable {
     private String logradouro;
     
     @Column(nullable = false)
-    private String bairro;
+    private Integer numero;
     
-    @Column(nullable = false)
-    private String cidade;
+    private String complemento;
     
-    @Column(nullable = false)
-    private String estado;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idcidade")
+    private Cidade cidade;
     
     public Endereco() {
     }
 
-    public Endereco(Long id, String logradouro, String bairro, 
-            String cidade, String estado) {
-        this.id = id;
-        this.logradouro = logradouro;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-    }
+    
 
-    public Long getId() {
+    public Endereco(Long id, String logradouro, Integer numero, String complemento, Cidade cidade) {
+		super();
+		this.id = id;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.cidade = cidade;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -58,30 +63,44 @@ public class Endereco implements Serializable {
         this.logradouro = logradouro;
     }
 
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     
+    
+	public Integer getNumero() {
+		return numero;
+	}
+
+
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+
+
 	@Override
     public int hashCode() {
         int hash = 0;

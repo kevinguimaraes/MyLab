@@ -8,7 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -23,15 +27,21 @@ public class Calibracao  implements Serializable{
     private double valor;
     
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dt_calibracao;
+    
+    @ManyToOne
+    @JoinColumn(name = "idequipamento")
+    private Equipamento equipamento;
 
-	public Calibracao(Long id, double valor, Date dt_calibracao) {
+	public Calibracao(Long id, double valor, Date dt_calibracao, Equipamento equipamento) {
 		super();
 		this.id = id;
 		this.valor = valor;
 		this.dt_calibracao = dt_calibracao;
+		this.equipamento = equipamento;
 	}
-	
+
 	public Calibracao() {
 		super();
 	}
@@ -58,6 +68,14 @@ public class Calibracao  implements Serializable{
 
 	public void setDt_calibracao(Date dt_calibracao) {
 		this.dt_calibracao = dt_calibracao;
+	}
+	
+	public Equipamento getEquipamento() {
+		return equipamento;
+	}
+
+	public void setEquipamento(Equipamento equipamento) {
+		this.equipamento = equipamento;
 	}
 
 	@Override

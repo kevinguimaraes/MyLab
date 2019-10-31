@@ -7,10 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "Medicao")
+@Table(name = "medicao")
 public class Medicao implements Serializable{
 	private static final long serialVersionUID = 1L;
     
@@ -22,7 +26,16 @@ public class Medicao implements Serializable{
     
     private String unidade;
     
+    @Temporal(TemporalType.DATE)
     private Date dt_Medicao;
+    
+    @ManyToOne
+    @JoinColumn(name = "idequipamento")
+    private Equipamento equipamento;
+    
+    @ManyToOne
+    @JoinColumn(name = "idamostra")
+    private Amostra amostra;
 
 	public Medicao(Long id, double valor, String unidade, Date dt_Medicao) {
 		super();
