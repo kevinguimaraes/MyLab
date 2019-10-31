@@ -30,8 +30,7 @@ public class EnderecoDaoTEST {
     @Test
     public void testSalvar() {
         System.out.println("salvar");
-        
-        endereco = new Endereco(null, "Rodovia Virgilio Varzea", "Canasvieiras", "Florianopolis", "SC");
+        endereco = new Endereco(null, "Rua sem cascade", 12, "APT12",  null);
         session = HibernateUtil.abrirSessao();
         enderecoDAO.salvarOuAlterar(endereco, session);
         session.close();
@@ -42,12 +41,12 @@ public class EnderecoDaoTEST {
     public void testAlterar() {
         System.out.println("alterar");
         primeiroEnderecoBanco();
-        endereco.setBairro("Estreito");
+        endereco.setComplemento("Estreito");
         session = HibernateUtil.abrirSessao();
         enderecoDAO.salvarOuAlterar(endereco, session);
         Endereco prodAlterado = enderecoDAO.pesquisarPorId(endereco.getId(), session);
         session.close();
-        Assert.assertEquals(prodAlterado.getBairro(), endereco.getBairro());
+        Assert.assertEquals(prodAlterado.getComplemento(), endereco.getComplemento());
     }
 
     @Test
