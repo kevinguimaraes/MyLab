@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,11 +31,11 @@ public class Perfil implements Serializable{
 		super();
 	}
 
-	public Long getIdperfil() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setIdperfil(Long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

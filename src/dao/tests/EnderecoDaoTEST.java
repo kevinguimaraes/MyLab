@@ -7,7 +7,6 @@ import dao.EnderecoDAO;
 import dao.helper.HibernateUtil;
 import model.Endereco;
 
-import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;

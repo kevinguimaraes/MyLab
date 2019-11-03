@@ -21,7 +21,7 @@ public class Estado implements Serializable{
     
     private String nome;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idpais")
     private Pais pais;
     

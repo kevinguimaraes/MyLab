@@ -37,12 +37,14 @@ public class Medicao implements Serializable{
     @JoinColumn(name = "idamostra")
     private Amostra amostra;
 
-	public Medicao(Long id, double valor, String unidade, Date dt_Medicao) {
+	public Medicao(Long id, double valor, String unidade, Date dt_Medicao, Equipamento equipamento, Amostra amostra) {
 		super();
 		this.id = id;
 		this.valor = valor;
 		this.unidade = unidade;
 		this.dt_Medicao = dt_Medicao;
+		this.equipamento = equipamento;
+		this.amostra = amostra;
 	}
 
 	public Medicao() {

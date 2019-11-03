@@ -2,8 +2,11 @@
 package dao.tests;
 
 import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.junit.Assert;
 import org.junit.Test;
 
 import dao.PessoaFisicaDAO;
@@ -70,6 +73,16 @@ public class PessoaFisicaDaoTEST {
         session.close();
         assertNull(produtoExcluido);
     }
+ 
+	 @Test
+	 public void testPesquisarTodos() {
+	     System.out.println("pesquisarTodos");
+	     primeiroPessoaFisicaDoBancoDeDados();
+	     session = HibernateUtil.abrirSessao();
+	     List<PessoaFisica> pessoasFisicas = pessoaFisicaDAO.listarTodos(session);
+	     session.close();
+	     Assert.assertFalse(pessoasFisicas.isEmpty());
+	 }
    
     
      private void primeiroPessoaFisicaDoBancoDeDados() {

@@ -5,14 +5,17 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.junit.Assert;
 import org.junit.Test;
 
 import dao.PessoaJuridicaDAO;
 import dao.helper.HibernateUtil;
 import model.Endereco;
+import model.PessoaJuridica;
 import model.PessoaJuridica;
 
 public class PessoaJuridicaDaoTEST {
@@ -72,6 +75,16 @@ public class PessoaJuridicaDaoTEST {
         session.close();
         assertNull(produtoExcluido);
     }
+	 
+	 @Test
+	 public void testPesquisarTodos() {
+	     System.out.println("pesquisarTodos");
+	     primeiroPessoaJuridicaDoBancoDeDados();
+	     session = HibernateUtil.abrirSessao();
+	     List<PessoaJuridica> pessoasJuridicas = pessoaJuridicaDAO.listarTodos(session);
+	     session.close();
+	     Assert.assertFalse(pessoasJuridicas.isEmpty());
+	 }
    
     
      private void primeiroPessoaJuridicaDoBancoDeDados() {
