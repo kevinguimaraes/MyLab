@@ -16,20 +16,20 @@ import org.hibernate.Session;
 
 import com.google.gson.Gson;
 
-import dao.PessoaJuridicaDAO;
+import dao.MedicaoDAO;
 import dao.helper.HibernateUtil;
-import model.PessoaJuridica;
+import model.Medicao;
 
-@Path("/pessoajuridica")
-public class PessoaJuridicaServer {
+@Path("/medicao")
+public class MedicaoServer {
 
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<PessoaJuridica> getPessoaJuridica(){
-		 PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+    public List<Medicao> getMedicao(){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
 		 Session session = HibernateUtil.abrirSessao();
-		 List<PessoaJuridica> tmp  = pessoaJuridicaDAO.listarTodos(session);
+		 List<Medicao> tmp  = medicaoDAO.listarTodos(session);
 		 session.close();
 		 return tmp;
     }
@@ -37,12 +37,12 @@ public class PessoaJuridicaServer {
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	@Path("{id}")
-    public PessoaJuridica getPessoaJuridica(@PathParam("id") Long id){
-		 PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+    public Medicao getMedicao(@PathParam("id") Long id){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
 		 Session session = HibernateUtil.abrirSessao();
-		 PessoaJuridica pessoaJuridica = pessoaJuridicaDAO.pesquisarPorId(id, session);
+		 Medicao medicao = medicaoDAO.pesquisarPorId(id, session);
 		 session.close();
-		 return pessoaJuridica;
+		 return medicao;
     }
 	 
 	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -50,12 +50,12 @@ public class PessoaJuridicaServer {
 	 @Produces(MediaType.APPLICATION_JSON)
 	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     Medicao medicao = gson.fromJson(dadosJSON, Medicao.class);
+	     MedicaoDAO medicaoDAO = new MedicaoDAO();
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.salvarOuAlterar(pessoaJuridica, session);
+	     medicaoDAO.salvarOuAlterar(medicao, session);
 		 session.close();
-	     return pessoaJuridica.getId();
+	     return medicao.getId();
 	 }
 	 
 	 //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -63,26 +63,26 @@ public class PessoaJuridicaServer {
 	 @Produces(MediaType.APPLICATION_JSON)
 	 public Long alterar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
+	     Medicao medicao = gson.fromJson(dadosJSON, Medicao.class);
 	     
 	     
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     MedicaoDAO medicaoDAO = new MedicaoDAO();
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.salvarOuAlterar(pessoaJuridica, session);
+	     medicaoDAO.salvarOuAlterar(medicao, session);
 		 session.close();
-	     return pessoaJuridica.getId();
+	     return medicao.getId();
 	 }
 	 
 	@DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Boolean deletar(@QueryParam("dado") String dadosJSON){
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     MedicaoDAO medicaoDAO = new MedicaoDAO();
 	     
 	     Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
+	     Medicao medicao = gson.fromJson(dadosJSON, Medicao.class);
 	     
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.excluir(pessoaJuridica, session);
+	     medicaoDAO.excluir(medicao, session);
 		 session.close();
 	     return true;
 	 }

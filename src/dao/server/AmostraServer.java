@@ -16,20 +16,20 @@ import org.hibernate.Session;
 
 import com.google.gson.Gson;
 
-import dao.PessoaJuridicaDAO;
+import dao.AmostraDAO;
 import dao.helper.HibernateUtil;
-import model.PessoaJuridica;
+import model.Amostra;
 
-@Path("/pessoajuridica")
-public class PessoaJuridicaServer {
+@Path("/amostra")
+public class AmostraServer {
 
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<PessoaJuridica> getPessoaJuridica(){
-		 PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+    public List<Amostra> getAmostra(){
+		 AmostraDAO amostraDAO = new AmostraDAO();
 		 Session session = HibernateUtil.abrirSessao();
-		 List<PessoaJuridica> tmp  = pessoaJuridicaDAO.listarTodos(session);
+		 List<Amostra> tmp  = amostraDAO.listarTodos(session);
 		 session.close();
 		 return tmp;
     }
@@ -37,12 +37,12 @@ public class PessoaJuridicaServer {
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	@Path("{id}")
-    public PessoaJuridica getPessoaJuridica(@PathParam("id") Long id){
-		 PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+    public Amostra getAmostra(@PathParam("id") Long id){
+		 AmostraDAO amostraDAO = new AmostraDAO();
 		 Session session = HibernateUtil.abrirSessao();
-		 PessoaJuridica pessoaJuridica = pessoaJuridicaDAO.pesquisarPorId(id, session);
+		 Amostra amostra = amostraDAO.pesquisarPorId(id, session);
 		 session.close();
-		 return pessoaJuridica;
+		 return amostra;
     }
 	 
 	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -50,12 +50,12 @@ public class PessoaJuridicaServer {
 	 @Produces(MediaType.APPLICATION_JSON)
 	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     Amostra amostra = gson.fromJson(dadosJSON, Amostra.class);
+	     AmostraDAO amostraDAO = new AmostraDAO();
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.salvarOuAlterar(pessoaJuridica, session);
+	     amostraDAO.salvarOuAlterar(amostra, session);
 		 session.close();
-	     return pessoaJuridica.getId();
+	     return amostra.getId();
 	 }
 	 
 	 //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -63,26 +63,26 @@ public class PessoaJuridicaServer {
 	 @Produces(MediaType.APPLICATION_JSON)
 	 public Long alterar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
+	     Amostra amostra = gson.fromJson(dadosJSON, Amostra.class);
 	     
 	     
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     AmostraDAO amostraDAO = new AmostraDAO();
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.salvarOuAlterar(pessoaJuridica, session);
+	     amostraDAO.salvarOuAlterar(amostra, session);
 		 session.close();
-	     return pessoaJuridica.getId();
+	     return amostra.getId();
 	 }
 	 
 	@DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Boolean deletar(@QueryParam("dado") String dadosJSON){
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     AmostraDAO amostraDAO = new AmostraDAO();
 	     
 	     Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
+	     Amostra amostra = gson.fromJson(dadosJSON, Amostra.class);
 	     
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.excluir(pessoaJuridica, session);
+	     amostraDAO.excluir(amostra, session);
 		 session.close();
 	     return true;
 	 }

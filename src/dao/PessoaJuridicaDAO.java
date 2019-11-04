@@ -19,7 +19,7 @@ public class PessoaJuridicaDAO extends BaseDao<PessoaJuridica, Long> implements 
 
 	@Override
 	public List<PessoaJuridica> listarTodos(Session session) throws HibernateException {
-		Query consulta = session.createQuery("from PessoaFisica");
+		Query consulta = session.createQuery("from PessoaJuridica");
         return consulta.list();
 	}
     

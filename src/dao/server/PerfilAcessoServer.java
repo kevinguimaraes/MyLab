@@ -16,20 +16,20 @@ import org.hibernate.Session;
 
 import com.google.gson.Gson;
 
-import dao.PessoaJuridicaDAO;
+import dao.PerfilAcessoDAO;
 import dao.helper.HibernateUtil;
-import model.PessoaJuridica;
+import model.PerfilAcesso;
 
-@Path("/pessoajuridica")
-public class PessoaJuridicaServer {
+@Path("/perfilacesso")
+public class PerfilAcessoServer {
 
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<PessoaJuridica> getPessoaJuridica(){
-		 PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+    public List<PerfilAcesso> getPerfilAcesso(){
+		 PerfilAcessoDAO perfilAcessoDAO = new PerfilAcessoDAO();
 		 Session session = HibernateUtil.abrirSessao();
-		 List<PessoaJuridica> tmp  = pessoaJuridicaDAO.listarTodos(session);
+		 List<PerfilAcesso> tmp  = perfilAcessoDAO.listarTodos(session);
 		 session.close();
 		 return tmp;
     }
@@ -37,12 +37,12 @@ public class PessoaJuridicaServer {
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	@Path("{id}")
-    public PessoaJuridica getPessoaJuridica(@PathParam("id") Long id){
-		 PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+    public PerfilAcesso getPerfilAcesso(@PathParam("id") Long id){
+		 PerfilAcessoDAO perfilAcessoDAO = new PerfilAcessoDAO();
 		 Session session = HibernateUtil.abrirSessao();
-		 PessoaJuridica pessoaJuridica = pessoaJuridicaDAO.pesquisarPorId(id, session);
+		 PerfilAcesso perfilAcesso = perfilAcessoDAO.pesquisarPorId(id, session);
 		 session.close();
-		 return pessoaJuridica;
+		 return perfilAcesso;
     }
 	 
 	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -50,12 +50,12 @@ public class PessoaJuridicaServer {
 	 @Produces(MediaType.APPLICATION_JSON)
 	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     PerfilAcesso perfilAcesso = gson.fromJson(dadosJSON, PerfilAcesso.class);
+	     PerfilAcessoDAO perfilAcessoDAO = new PerfilAcessoDAO();
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.salvarOuAlterar(pessoaJuridica, session);
+	     perfilAcessoDAO.salvarOuAlterar(perfilAcesso, session);
 		 session.close();
-	     return pessoaJuridica.getId();
+	     return perfilAcesso.getId();
 	 }
 	 
 	 //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -63,26 +63,26 @@ public class PessoaJuridicaServer {
 	 @Produces(MediaType.APPLICATION_JSON)
 	 public Long alterar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
+	     PerfilAcesso perfilAcesso = gson.fromJson(dadosJSON, PerfilAcesso.class);
 	     
 	     
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     PerfilAcessoDAO perfilAcessoDAO = new PerfilAcessoDAO();
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.salvarOuAlterar(pessoaJuridica, session);
+	     perfilAcessoDAO.salvarOuAlterar(perfilAcesso, session);
 		 session.close();
-	     return pessoaJuridica.getId();
+	     return perfilAcesso.getId();
 	 }
 	 
 	@DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Boolean deletar(@QueryParam("dado") String dadosJSON){
-	     PessoaJuridicaDAO pessoaJuridicaDAO = new PessoaJuridicaDAO();
+	     PerfilAcessoDAO perfilAcessoDAO = new PerfilAcessoDAO();
 	     
 	     Gson gson = new Gson();
-	     PessoaJuridica pessoaJuridica = gson.fromJson(dadosJSON, PessoaJuridica.class);
+	     PerfilAcesso perfilAcesso = gson.fromJson(dadosJSON, PerfilAcesso.class);
 	     
 	     Session session = HibernateUtil.abrirSessao();
-	     pessoaJuridicaDAO.excluir(pessoaJuridica, session);
+	     perfilAcessoDAO.excluir(perfilAcesso, session);
 		 session.close();
 	     return true;
 	 }

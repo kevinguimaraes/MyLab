@@ -18,8 +18,6 @@ public class PerfilAcesso implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String nome;
-    
     @ManyToOne
     @JoinColumn(name = "idtela")
     private Tela tela;
@@ -28,10 +26,9 @@ public class PerfilAcesso implements Serializable{
     @JoinColumn(name = "idperfil")
     private Perfil perfil;
 
-	public PerfilAcesso(Long id, String nome, Tela tela, Perfil perfil) {
+	public PerfilAcesso(Long id, Tela tela, Perfil perfil) {
 		super();
 		this.id = id;
-		this.nome = nome;
 		this.tela = tela;
 		this.perfil = perfil;
 	}
@@ -48,14 +45,6 @@ public class PerfilAcesso implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
 	public Tela getTela() {
 		return tela;
 	}

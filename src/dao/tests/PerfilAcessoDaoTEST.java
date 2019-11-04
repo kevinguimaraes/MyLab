@@ -29,23 +29,11 @@ public class PerfilAcessoDaoTEST {
     @Test
     public void testSalvar() {
         System.out.println("salvar");
-        perfilAcesso = new PerfilAcesso(null, "perfilAcesso1", null, null);
+        perfilAcesso = new PerfilAcesso(null, null, null);
         session = HibernateUtil.abrirSessao();
         perfilAcessoDAO.salvarOuAlterar(perfilAcesso, session);
         session.close();
         Assert.assertNotNull(perfilAcesso.getId());
-    }
-
-    @Test
-    public void testAlterar() {
-        System.out.println("alterar");
-        primeiroPerfilAcessoBanco();
-        perfilAcesso.setNome("nome alterado");
-        session = HibernateUtil.abrirSessao();
-        perfilAcessoDAO.salvarOuAlterar(perfilAcesso, session);
-        PerfilAcesso perfilAcessoAlterado = perfilAcessoDAO.pesquisarPorId(perfilAcesso.getId(), session);
-        session.close();
-        Assert.assertEquals(perfilAcessoAlterado.getNome(), perfilAcesso.getNome());
     }
 
     @Test
