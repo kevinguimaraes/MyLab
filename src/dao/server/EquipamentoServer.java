@@ -2,7 +2,9 @@ package dao.server;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -45,10 +47,10 @@ public class EquipamentoServer {
 		 return equipamento;
     }
 	 
-	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
+	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	 public Long cadastrar(@FormParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     Equipamento equipamento = gson.fromJson(dadosJSON, Equipamento.class);
 	     EquipamentoDAO equipamentoDAO = new EquipamentoDAO();
