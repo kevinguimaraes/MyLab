@@ -33,12 +33,15 @@ public class Amostra implements Serializable{
     @JoinColumn(name = "idendereco")
     private Endereco endereco;
 
-	public Amostra(Long id, String codigo, Date dt_amostra, String observacao) {
+
+	public Amostra(Long id, String codigo, Date dt_amostra, String observacao, Cliente cliente, Endereco endereco) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
 		this.dt_amostra = dt_amostra;
 		this.observacao = observacao;
+		this.cliente = cliente;
+		this.endereco = endereco;
 	}
 
 	public Amostra() {
@@ -75,6 +78,22 @@ public class Amostra implements Serializable{
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override

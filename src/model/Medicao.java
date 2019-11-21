@@ -27,7 +27,7 @@ public class Medicao implements Serializable{
     private String unidade;
     
     @Temporal(TemporalType.DATE)
-    private Date dt_Medicao;
+    private Date dt_medicao;
     
     @ManyToOne
     @JoinColumn(name = "idequipamento")
@@ -37,12 +37,12 @@ public class Medicao implements Serializable{
     @JoinColumn(name = "idamostra")
     private Amostra amostra;
 
-	public Medicao(Long id, double valor, String unidade, Date dt_Medicao, Equipamento equipamento, Amostra amostra) {
+	public Medicao(Long id, double valor, String unidade, Date dt_medicao, Equipamento equipamento, Amostra amostra) {
 		super();
 		this.id = id;
 		this.valor = valor;
 		this.unidade = unidade;
-		this.dt_Medicao = dt_Medicao;
+		this.dt_medicao = dt_medicao;
 		this.equipamento = equipamento;
 		this.amostra = amostra;
 	}
@@ -76,11 +76,11 @@ public class Medicao implements Serializable{
 	}
 
 	public Date getDt_Medicao() {
-		return dt_Medicao;
+		return dt_medicao;
 	}
 
-	public void setDt_Medicao(Date dt_Medicao) {
-		this.dt_Medicao = dt_Medicao;
+	public void setDt_Medicao(Date dt_medicao) {
+		this.dt_medicao = dt_medicao;
 	}
     
 	@Override

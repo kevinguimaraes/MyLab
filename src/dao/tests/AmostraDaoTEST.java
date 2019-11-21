@@ -30,7 +30,7 @@ public class AmostraDaoTEST {
     @Test
     public void testSalvar() {
         System.out.println("salvar");
-        amostra = new Amostra(null, "codigo amostra", new Date(), "obs create");
+        amostra = new Amostra(null, "codigo amostra", new Date(), "obs create", null, null);
         session = HibernateUtil.abrirSessao();
         amostraDAO.salvarOuAlterar(amostra, session);
         session.close();
