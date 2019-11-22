@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "amostra")
@@ -21,6 +23,7 @@ public class Amostra implements Serializable{
     
     private String codigo;
     
+    @Temporal(TemporalType.DATE)
     private Date dt_amostra;
     
     private String observacao;

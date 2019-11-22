@@ -29,6 +29,8 @@ public class Endereco implements Serializable {
     
     private String complemento;
     
+    private String cep;
+    
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idcidade")
     private Cidade cidade;
@@ -38,12 +40,13 @@ public class Endereco implements Serializable {
 
     
 
-    public Endereco(Long id, String logradouro, Integer numero, String complemento, Cidade cidade) {
+    public Endereco(Long id, String logradouro, Integer numero, String complemento, String cep, Cidade cidade) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.complemento = complemento;
+		this.cep = cep;
 		this.cidade = cidade;
 	}
 
@@ -85,6 +88,14 @@ public class Endereco implements Serializable {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
 	}
 
 

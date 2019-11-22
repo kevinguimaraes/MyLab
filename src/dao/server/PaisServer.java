@@ -2,6 +2,7 @@ package dao.server;
 
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -45,9 +46,9 @@ public class PaisServer {
 		 return pais;
     }
 	 
-	//@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
+	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     Pais pais = gson.fromJson(dadosJSON, Pais.class);
@@ -58,9 +59,9 @@ public class PaisServer {
 	     return pais.getId();
 	 }
 	 
-	 //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 @PUT
 	 @Produces(MediaType.APPLICATION_JSON)
+	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 public Long alterar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     Pais pais = gson.fromJson(dadosJSON, Pais.class);
@@ -75,6 +76,7 @@ public class PaisServer {
 	 
 	@DELETE
     @Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Boolean deletar(@QueryParam("dado") String dadosJSON){
 	     PaisDAO paisDAO = new PaisDAO();
 	     

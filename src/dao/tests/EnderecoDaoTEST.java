@@ -29,7 +29,7 @@ public class EnderecoDaoTEST {
     @Test
     public void testSalvar() {
         System.out.println("salvar");
-        endereco = new Endereco(null, "Rua sem cascade", 12, "APT12",  null);
+        endereco = new Endereco(null, "Rua sem cascade", 12, "APT12", "123123", null);
         session = HibernateUtil.abrirSessao();
         enderecoDAO.salvarOuAlterar(endereco, session);
         session.close();

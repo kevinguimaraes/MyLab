@@ -33,7 +33,7 @@ public class PessoaJuridicaDaoTEST {
     public void testSalvar() {
         System.out.println("salvar");
         pessoaJuridica = new PessoaJuridica(null, "Jorge", new Date(), "12345678", "kevin@senac.br", "088123213", "M");
-        Endereco endereco = new Endereco(null, "Rua sem cascade", 12, "APT12",  null);
+        Endereco endereco = new Endereco(null, "Rua sem cascade", 12, "APT12", "123132",  null);
         pessoaJuridica.setEndereco(endereco);
         session = HibernateUtil.abrirSessao();
         pessoaJuridicaDAO.salvarOuAlterar(pessoaJuridica, session);

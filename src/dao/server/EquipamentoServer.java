@@ -60,9 +60,9 @@ public class EquipamentoServer {
 	     return equipamento.getId();
 	 }
 	 
-	 //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 @PUT
 	 @Produces(MediaType.APPLICATION_JSON)
+	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	 public Long alterar(@QueryParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     Equipamento equipamento = gson.fromJson(dadosJSON, Equipamento.class);
@@ -77,6 +77,7 @@ public class EquipamentoServer {
 	 
 	@DELETE
     @Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Boolean deletar(@QueryParam("dado") String dadosJSON){
 	     EquipamentoDAO equipamentoDAO = new EquipamentoDAO();
 	     
