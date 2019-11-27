@@ -81,6 +81,12 @@ insert into amostra (id, codigo, dt_amostra, observacao, idcliente, idendereco) 
 insert into amostra (id, codigo, dt_amostra, observacao, idcliente, idendereco) values (3, '789', '2018-08-20', 'Coletada com o jarra', 3, 3);
 insert into amostra (id, codigo, dt_amostra, observacao, idcliente, idendereco) values (4, '987', '2017-06-15', 'Coletada com o mão', 4, 4);
 
+insert into medicao (id, dt_medicao, unidade, valor, idamostra, idequipamento) values (1, '2019-04-11', 'mg/l', 8.48, 1, 1);
+insert into medicao (id, dt_medicao, unidade, valor, idamostra, idequipamento) values (2, '2014-07-08', 'pH', 2.10, 2, 2);
+insert into medicao (id, dt_medicao, unidade, valor, idamostra, idequipamento) values (3, '2019-09-03', 'ppm', 1.20, 3, 3);
+insert into medicao (id, dt_medicao, unidade, valor, idamostra, idequipamento) values (4, '2019-02-16', 'uS/cm', 7.00, 4, 4);
+insert into medicao (id, dt_medicao, unidade, valor, idamostra, idequipamento) values (5, '2019-01-11', 'mg/l', 10.2, 1, 1);
+
 insert into tela (id, nome) values (1, 'Dashboard');
 insert into tela (id, nome) values (2, 'Cadastro cliente');
 insert into tela (id, nome) values (3, 'Cadastro amostra');

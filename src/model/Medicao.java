@@ -82,7 +82,31 @@ public class Medicao implements Serializable{
 	public void setDt_Medicao(Date dt_medicao) {
 		this.dt_medicao = dt_medicao;
 	}
-    
+	
+	public Date getDt_medicao() {
+		return dt_medicao;
+	}
+
+	public void setDt_medicao(Date dt_medicao) {
+		this.dt_medicao = dt_medicao;
+	}
+
+	public Equipamento getEquipamento() {
+		return equipamento;
+	}
+
+	public void setEquipamento(Equipamento equipamento) {
+		this.equipamento = equipamento;
+	}
+
+	public Amostra getAmostra() {
+		return amostra;
+	}
+
+	public void setAmostra(Amostra amostra) {
+		this.amostra = amostra;
+	}
+
 	@Override
     public int hashCode() {
         int hash = 0;

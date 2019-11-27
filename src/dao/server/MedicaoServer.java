@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -49,8 +50,9 @@ public class MedicaoServer {
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
 	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
+	 public Long cadastrar(@FormParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
+		 System.out.println(dadosJSON);
 	     Medicao medicao = gson.fromJson(dadosJSON, Medicao.class);
 	     MedicaoDAO medicaoDAO = new MedicaoDAO();
 	     Session session = HibernateUtil.abrirSessao();
