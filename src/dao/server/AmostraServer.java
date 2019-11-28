@@ -51,7 +51,7 @@ public class AmostraServer {
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
 	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
+	 public Long cadastrar(@FormParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     Amostra amostra = gson.fromJson(dadosJSON, Amostra.class);
 	     AmostraDAO amostraDAO = new AmostraDAO();
