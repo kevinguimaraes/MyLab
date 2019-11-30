@@ -10,7 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.Session;
@@ -49,7 +49,7 @@ public class UsuarioServer {
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
 	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 public Long cadastrar(@QueryParam("dado") String dadosJSON ) {
+	 public Long cadastrar(@FormParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     Usuario usuario = gson.fromJson(dadosJSON, Usuario.class);
 	     UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -62,7 +62,7 @@ public class UsuarioServer {
 	 @PUT
 	 @Produces(MediaType.APPLICATION_JSON)
 	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 public Long alterar(@QueryParam("dado") String dadosJSON ) {
+	 public Long alterar(@FormParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     Usuario usuario = gson.fromJson(dadosJSON, Usuario.class);
 	     
@@ -77,7 +77,7 @@ public class UsuarioServer {
 	@DELETE
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Boolean deletar(@QueryParam("dado") String dadosJSON){
+    public Boolean deletar(@FormParam("dado") String dadosJSON){
 	     UsuarioDAO usuarioDAO = new UsuarioDAO();
 	     
 	     Gson gson = new Gson();

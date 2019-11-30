@@ -11,7 +11,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.Session;
@@ -64,7 +63,7 @@ public class AmostraServer {
 	 @PUT
 	 @Produces(MediaType.APPLICATION_JSON)
 	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 public Long alterar(@QueryParam("dado") String dadosJSON ) {
+	 public Long alterar(@FormParam("dado") String dadosJSON ) {
 		 Gson gson = new Gson();
 	     Amostra amostra = gson.fromJson(dadosJSON, Amostra.class);
 	     
@@ -79,7 +78,7 @@ public class AmostraServer {
 	@DELETE
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Boolean deletar(@QueryParam("dado") String dadosJSON){
+    public Boolean deletar(@FormParam("dado") String dadosJSON){
 	     AmostraDAO amostraDAO = new AmostraDAO();
 	     
 	     Gson gson = new Gson();
