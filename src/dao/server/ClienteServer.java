@@ -20,6 +20,8 @@ import com.google.gson.Gson;
 import dao.ClienteDAO;
 import dao.helper.HibernateUtil;
 import model.Cliente;
+import model.PessoaFisica;
+import model.PessoaJuridica;
 
 @Path("/cliente")
 public class ClienteServer {
@@ -49,9 +51,14 @@ public class ClienteServer {
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
 	 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	 public Long cadastrar(@FormParam("dado") String dadosJSON ) {
+	 public Long cadastrar(@FormParam("dado") String dadosJSON, @FormParam("pessoa") String pessoa, @FormParam("tipo") String tipo) {
 		 Gson gson = new Gson();
 	     Cliente cliente = gson.fromJson(dadosJSON, Cliente.class);
+	     if(tipo.equals("fisica")) {
+	    	 cliente.setPessoa(gson.fromJson(pessoa, PessoaFisica.class));
+	     } else if (tipo.equals("juridica")) {
+	    	 cliente.setPessoa(gson.fromJson(pessoa, PessoaJuridica.class));
+	     }
 	     ClienteDAO clienteDAO = new ClienteDAO();
 	     Session session = HibernateUtil.abrirSessao();
 	     clienteDAO.salvarOuAlterar(cliente, session);
