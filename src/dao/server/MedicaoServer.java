@@ -45,6 +45,61 @@ public class MedicaoServer {
 		 session.close();
 		 return medicao;
     }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/amostra/{id}")
+    public List<Medicao> getMedicaoPorAmostra(@PathParam("id") Long id){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 List<Medicao> tmp = medicaoDAO.listarPorAmostra(session, id);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/equipamento/{id}")
+    public List<Medicao> getMedicaoPorEquipamento(@PathParam("id") Long id){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 List<Medicao> tmp = medicaoDAO.listarPorEquipamento(session, id);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/week")
+    public List<Integer> getMedicaoWeek(){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 List<Integer> tmp = medicaoDAO.listarWeekMedicoes(session);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/month")
+    public List<Integer> getMedicaoMonth(){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 List<Integer> tmp = medicaoDAO.listarMonthPerWeekMedicoes(session);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/cliente/{id}")
+    public List<Medicao> getMedicaoPorCliente(@PathParam("id") Long id){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 List<Medicao> tmp = medicaoDAO.listarPorCliente(session, id);
+		 session.close();
+		 return tmp;
+    }
 	 
 	 @POST
 	 @Produces(MediaType.APPLICATION_JSON)
