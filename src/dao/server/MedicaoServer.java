@@ -1,5 +1,6 @@
 package dao.server;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -59,6 +60,17 @@ public class MedicaoServer {
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
+	@Path("/limit/{size}")
+    public List<Medicao> getMedicaoLimit(@PathParam("size") Integer size){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 List<Medicao> tmp = medicaoDAO.listarTodosLimit(session, size);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
 	@Path("/equipamento/{id}")
     public List<Medicao> getMedicaoPorEquipamento(@PathParam("id") Long id){
 		 MedicaoDAO medicaoDAO = new MedicaoDAO();
@@ -86,6 +98,50 @@ public class MedicaoServer {
 		 MedicaoDAO medicaoDAO = new MedicaoDAO();
 		 Session session = HibernateUtil.abrirSessao();
 		 List<Integer> tmp = medicaoDAO.listarMonthPerWeekMedicoes(session);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/year")
+    public List<Integer> getMedicaoYear(){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 List<Integer> tmp = medicaoDAO.listarYearMedicoes(session);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/max-cliente-med")
+    public List<String> getMaxMedPerCliente(){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 List<String> tmp = medicaoDAO.listarClienteMaxMedicoes(session);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/amostra-med")
+    public BigInteger getAmostraMedicao(){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 BigInteger tmp = medicaoDAO.listarAmostraWithOutMedicao(session);
+		 session.close();
+		 return tmp;
+    }
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/amostra-month")
+    public BigInteger getAmostraThisMonth(){
+		 MedicaoDAO medicaoDAO = new MedicaoDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 BigInteger tmp = medicaoDAO.listarAmostraThisMonth(session);
 		 session.close();
 		 return tmp;
     }

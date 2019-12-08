@@ -34,6 +34,18 @@ public class UsuarioServer {
 		 session.close();
 		 return tmp;
     }
+	
+	
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+	@Path("/login/{login}")
+    public Usuario getUsuario(@PathParam("login") String login){
+		 UsuarioDAO usuarioDAO = new UsuarioDAO();
+		 Session session = HibernateUtil.abrirSessao();
+		 Usuario usuario = usuarioDAO.listarPorNomeUsuario(session, login);
+		 session.close();
+		 return usuario;
+    }
 	 
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
